@@ -5,6 +5,16 @@ link in the Ruby on Rails weblog to a post which talked about adding breadcrumbs
 to your Rails application. I've been doing this with helpers, but as the post
 says this is "Easy and flexible". So I've created the plugin.
 
+== Changes
+
+Changed breadcrumb method to accept 3 options: :wrap_with_tag, :class and :seperator.
+
+* +:wrap_with_tag+ - An HTML tag to wrap each breadcrumb entry with (ie. li, p, etc.).
+* +:class+ - An HTML class to give to the tag specified in the +:wrap_with_tag+ option.
+* +:seperator+ - Acts the same as the old breadcrumb method worked.
+
+  <%= breadcrumb ::wrap_with_tag => 'li' %>
+
 == Example
 
   ##
