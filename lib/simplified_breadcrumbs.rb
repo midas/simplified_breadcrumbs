@@ -27,8 +27,8 @@ module SimplifiedBreadcrumbs
       options[:separator] ||= "&rsaquo;"
       html = ""
       return html if @breadcrumbs.nil?
-      if options[:wrap_with]
-        html = @breadcrumbs.map { |name, url| "<#{options[:wrap_with]}>#{link_to_unless_current( name, url )}</#{options[:wrap_with]}>" }.join( "" )
+      if options[:wrap_with_tag]
+        html = @breadcrumbs.map { |name, url| "<#{options[:wrap_with_tag]} class=\"#{options[:class]}\">#{link_to_unless_current( name, url )}</#{options[:wrap_with_tag]}>" }.join( "" )
       elsif options[:seperator]
         html = @breadcrumbs.map { |name, url| link_to_unless_current( name, url ) }.join(" #{options[:separator]} ")
       end
