@@ -20,10 +20,21 @@ module SimplifiedBreadcrumbs
 
   module Helper
 
-    def breadcrumb(separator = "&rsaquo;")
-      @breadcrumbs.map { |name, url| link_to_unless_current(name, url) }.join(" #{separator} ")
+    # Returns the HTML for the 
+    #
+    def breadcrumb( *args )
+      options = args.extract_options!
+      options[:separator] ||= "&rsaquo;"
+      html = ""
+      return html if @breadcrumbs.nil?
+      if options[:wrap_with]
+        html = @breadcrumbs.map { |name, url| "<#{options[:wrap_with]}>#{link_to_unless_current( name, url )}</#{options[:wrap_with]}>" }.join( "" )
+      elsif options[:seperator]
+        html = @breadcrumbs.map { |name, url| link_to_unless_current( name, url ) }.join(" #{options[:separator]} ")
+      end
+      return html
     end
-
+    
   end
 
 end
