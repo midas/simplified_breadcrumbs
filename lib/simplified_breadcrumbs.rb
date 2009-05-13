@@ -28,7 +28,7 @@ module SimplifiedBreadcrumbs
       html = ""
       return html if @breadcrumbs.nil?
       if options[:wrap_with_tag]
-        html = @breadcrumbs.map { |name, url| "<#{options[:wrap_with_tag]} class=\"#{options[:class]}\">#{url.blank? ? name : (options[:nil_path] ? link_to( name, url ) : link_to_unless_current( name, url )) }</#{options[:wrap_with_tag]}>" }.join( "" )
+        html = @breadcrumbs.map { |name, url| "<#{options[:wrap_with_tag]} class=\"#{options[:class]}#{@breadcrumbs[@breadcrumbs.length - 2] == [name, url] ? " last" : nil}\">#{url.blank? ? name : (options[:nil_path] ? link_to( name, url ) : link_to_unless_current( name, url )) }</#{options[:wrap_with_tag]}>" }.join( "" )
       elsif options[:seperator]
         html = @breadcrumbs.map { |name, url| url.blank? ? name : ( options[:nil_path] ? link_to( name, url ) : link_to_unless_current( name, url ) ) }.join(" #{options[:separator]} ")
       end
